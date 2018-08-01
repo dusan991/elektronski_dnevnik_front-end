@@ -1,0 +1,12 @@
+<div class="container mx-auto w-50">
+  <h4>Nastavnici</h4>
+  <mat-list>
+    <div *ngFor="let nastavnik of (nastavnici$ | async)">
+      <mat-list-item [routerLink]="['/nastavnik', nastavnik.idNastavnika]" class="ucenik clickable">
+        {{nastavnik.imeNastavnika}} {{nastavnik.prezimeNastavnika}}
+      </mat-list-item>
+    </div>
+  </mat-list>
+
+  <button mat-raised-button color="warn" [routerLink] ="['/nastavnik/add']">Dodaj nastavnika</button>
+</div>

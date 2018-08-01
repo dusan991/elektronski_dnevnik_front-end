@@ -1,0 +1,21 @@
+<form *ngIf="nastavnici && predmeti" #forma="ngForm" class="container mx-auto w-50 mt-5" (ngSubmit)="dodajPredmet()">
+  <h4>Odeljenje: {{imeOdeljenja}}</h4>
+  <h3>Dodaj predmet:</h3>
+  <mat-form-field class="d-block">
+    <mat-select placeholder="Nastavnik" [(ngModel)]="idNastavnika" name="nastavnik" required>
+      <mat-option *ngFor="let nastavnik of nastavnici " [value]="nastavnik.idNastavnika">
+        {{nastavnik.imeNastavnika}} {{nastavnik.prezimeNastavnika}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="d-block">
+    <mat-select placeholder="Predmet" [(ngModel)]="idPredmeta" name="predmet" required>
+      <mat-option *ngFor="let predmet of predmeti " [value]="predmet.idPredmeta">
+        {{predmet.imePredmeta}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button>Dodaj</button>
+  <button mat-button type="button" (click)="goBack()">Otkazi</button>
+</form>

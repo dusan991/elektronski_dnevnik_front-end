@@ -1,0 +1,66 @@
+<div *ngIf="ucenik && roditelj && nastavnikUslov " class="container mx-auto w-75 mt-5">
+  <h3>Ucenik: {{ucenik.imeUcenika}} {{ucenik.prezimeUcenika}}</h3>
+  <h3>Roditelj:
+    <span *ngIf="isAdmin" class="clickable" [routerLink]="['/roditelj',roditelj.idRoditelja]"> {{roditelj.imeRoditelja}} {{roditelj.prezimeRoditelja}}</span>
+    <span *ngIf="!isAdmin"> {{roditelj.imeRoditelja}} {{roditelj.prezimeRoditelja}}</span>
+  </h3>
+
+  <table class="mat-typography w-100 mt-3">
+    <thead>
+      <tr>
+        <th class="w-25">Ime predmeta:</th>
+        <th class="w-25">Ocene kontrolni:</th>
+        <th class="w-25">Ocene pismeni:</th>
+        <th class="w-25">Zakljucna ocena:</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let predmet of predmetiZaPrikaz">
+        <td>{{predmet.imePredmeta}}</td>
+        <td>{{ispisiNizOcena(predmet.ocenaKontrolniUcenika)}}</td>
+        <td>{{ispisiNizOcena(predmet.ocenaPismeniUcenika)}}</td>
+        <td>{{ispisiNizOcena(predmet.ocenaZakljucnaUcenika)}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+
+
+  <div>
+    <button *ngIf="!dodavanjeOcene && ( isAdmin || isNastavnik) && !ocenaZakljucena " mat-raised-button color="primary" class="mt-2"
+      (click)="dodavanjeOcene = true">Dodaj ocenu</button>
+
+    <div *ngIf="ocenaZakljucena">Ocena je zakljucena</div>
+    <form *ngIf="dodavanjeOcene" #forma="ngForm" (ngSubmit)="forma.form.valid && dodajOcenu()" class="m-4">
+      <h5>Upis ocene:</h5>
+      <mat-form-field *ngIf="isAdmin" class="d-block w-25">
+        <mat-select placeholder="Predmet" [(ngModel)]="ocena.idOdeljenjePredmetNastavnik" name="predmet" required>
+          <mat-option *ngFor="let predmet of predmeti" [value]="predmet.idOdeljenjePredmetNastavnik" [disabled]="imaZakljucnuOcenu(predmet)">
+            {{predmet.imePredmeta}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="d-block w-25">
+        <mat-select placeholder="Tip ocene" [(ngModel)]="ocena.tipOcene" name="tipOcene" required>
+          <mat-option *ngFor="let tipOcene of tipoviOcene " [value]="tipOcene">
+            {{tipOcene}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field class="d-block w-25">
+        <mat-select placeholder="Ocena" [(ngModel)]="ocena.ocena" name="ocena" required>
+          <mat-option *ngFor="let ocena of [1,2,3,4,5] " [value]="ocena">
+            {{ocena}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary">Upisi</button>
+      <button mat-button color="primary" (click)="dodavanjeOcene = false" type="button">Otkazi</button>
+    </form>
+
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="mat-typography glavniDiv container">
+  <h1> Prijavljivanje</h1>
+
+  <form (ngSubmit)="forma.form.valid && login()" #forma= "ngForm">
+    <mat-form-field class="input">
+      <input matInput placeholder="Korisnicko ime" name="username" autocomplete="off" [(ngModel)] = "user.username" required>
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <input matInput type="password" placeholder="Password" name="password" autocomplete="off" [(ngModel)] = "user.password" #password = "ngModel" required>
+    </mat-form-field>
+
+    <button mat-raised-button>Prijava</button>
+    <div *ngIf ="wrongPassword"> Pogresni kredencijali</div>
+    <div *ngIf ="error"> Doslo je do greske pri pristupu bazi</div>
+  </form>
+
+</div>

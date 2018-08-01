@@ -1,0 +1,16 @@
+<form (ngSubmit) = "forma.form.valid && saveOdeljenje()" #forma ="ngForm" class="w-50 mx-auto">
+  <label>Dodavanje odeljenja</label>
+  <mat-form-field class="d-block">
+    <input matInput placeholder="Ime odeljenja" [(ngModel)] = "odeljenje.imeOdeljenja" name="ime" autocomplete="off" required>
+  </mat-form-field>
+  <mat-form-field class="d-block">
+    <input matInput placeholder="Razred" type="number" min="1" max="8" [(ngModel)] = "odeljenje.razred" name="razred" autocomplete="off" required>
+  </mat-form-field>
+  <mat-form-field class="d-block">
+    <input matInput placeholder="Skolska godina" [(ngModel)] = "odeljenje.skolskaGodinaRazreda" name="skolskaGodina" autocomplete="off" required>
+  </mat-form-field>
+
+  <button *ngIf="!editovanje" mat-button color="warn" > Dodaj</button>
+  <button *ngIf="editovanje" mat-button color="warn" > Sacuvaj</button>
+  <button mat-button type="button" color="warn" (click) ="otkazano.emit()"> Otkazi</button>
+</form>

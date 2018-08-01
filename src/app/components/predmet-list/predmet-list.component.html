@@ -1,0 +1,12 @@
+<div class="container mx-auto w-50">
+    <h4>Predmet</h4>
+    <mat-list>
+      <div *ngFor="let predmet of (predmeti$ | async)">
+        <mat-list-item [routerLink]="['/predmet', predmet.idPredmeta]" class="ucenik clickable">
+          {{predmet.imePredmeta}} 
+        </mat-list-item>
+      </div>
+    </mat-list>
+  
+    <button mat-raised-button color="warn" [routerLink] ="['/predmet/add']">Dodaj predmet</button>
+  </div>

@@ -1,0 +1,28 @@
+<div class="container mx-auto w-50 ">
+<button *ngIf="!dodavanjeOdeljenja && !editovanje && isAdmin " mat-raised-button color ="warn" class="m-2"
+(click) ="dodavanjeOdeljenja = true"
+>Dodaj odeljenje</button>
+
+<app-odeljenje-add 
+*ngIf="dodavanjeOdeljenja" (otkazano) = "otkazano()" ></app-odeljenje-add>
+
+<app-odeljenje-add 
+*ngIf="editovanje" (otkazano) = "otkazano()" [editovanje]="true" [odeljenje]="selectedOdeljenje" ></app-odeljenje-add>
+</div>
+
+
+<div class="container mx-auto w-50 ">
+  <mat-list>
+    <div *ngFor="let odeljenje of (odeljenja$ | async)" >
+      <mat-list-item [routerLink]="['/odeljenje', odeljenje.idOdeljenja]" class="odeljenje clickable w-75 float-left">
+        Odeljenje:{{odeljenje.imeOdeljenja}}
+        <span class="spacer"></span>
+
+      </mat-list-item>
+      <span *ngIf="isAdmin" class="float-left mt-3">
+        <mat-icon (click) = "deleteOdeljenje(odeljenje.idOdeljenja)" >delete</mat-icon>
+        <mat-icon (click) ="edit(odeljenje)">edit</mat-icon>
+      </span>
+    </div>
+  </mat-list>
+</div>

@@ -1,0 +1,18 @@
+<form #forma="ngForm" class="container mx-auto w-50 mt-5" (ngSubmit)="dodajNastavnika()">
+  <h3>Dodaj nastavnika:</h3>
+  <mat-form-field class="d-block">
+    <input matInput placeholder="Ime" required name="ime" [(ngModel)]="nastavnik.imeNastavnika" autocomplete="off">
+  </mat-form-field>
+  <mat-form-field class="d-block">
+    <input matInput placeholder="Prezime" required name="prezime" [(ngModel)]="nastavnik.prezimeNastavnika" autocomplete="off">
+  </mat-form-field>
+  <mat-form-field class="d-block">
+    <input matInput placeholder="Korisnicko ime:" required name="korisnickoIme" [(ngModel)]="nastavnik.korisnickoImeNastavnika"
+      autocomplete="off">
+  </mat-form-field>
+  <mat-form-field class="d-block">
+    <input matInput placeholder="Sifra" required name="sifra" [(ngModel)]="nastavnik.sifraNastavnika" autocomplete="off">
+  </mat-form-field>
+  <button mat-raised-button>Dodaj</button>
+  <button mat-button type="button" (click)="goBack()">Otkazi</button>
+</form>

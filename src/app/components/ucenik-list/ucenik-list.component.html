@@ -1,0 +1,13 @@
+<div class="container mx-auto w-50">
+    <h4>Ucenici</h4>
+    <mat-list>
+      <div *ngFor="let ucenik of (ucenici$ | async)">
+        <mat-list-item [routerLink]="['/ucenik', ucenik.idUcenika]" class="ucenik clickable">
+          {{ucenik.imeUcenika}} {{ucenik.prezimeUcenika}}
+        </mat-list-item>
+
+      </div>
+    </mat-list>
+  
+    <button *ngIf = "isAdmin" mat-raised-button color="warn" [routerLink] ="['/ucenik/add']">Dodaj ucenika</button>
+  </div>

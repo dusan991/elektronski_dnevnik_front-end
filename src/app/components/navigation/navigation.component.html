@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+  <span>eDnevnik</span>
+
+  <div *ngIf="ulogovan && isAdmin">
+    <button mat-button [routerLink]="['predmeti']">Predmeti</button>
+    <button mat-button [routerLink]="['odeljenja']">Odeljenja</button>
+    <button mat-button [routerLink]="['ucenici']">Ucenici</button>
+    <button mat-button [routerLink]="['nastavnici']">Nastavnici</button>
+    <button mat-button [routerLink]="['roditelji']">Roditelji</button>
+  </div>
+
+  <button *ngIf="ulogovan" mat-raised-button [routerLink]="['login']" (click)="logout()">Odjava</button>
+</mat-toolbar>

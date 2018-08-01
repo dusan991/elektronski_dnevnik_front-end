@@ -1,0 +1,38 @@
+<div *ngIf="opn" class="container mx-auto w-50">
+
+  <h4>Ucenici</h4>
+  <mat-list>
+    <div *ngFor="let ucenik of (ucenici$ | async)" class="ucenik">
+      <mat-icon *ngIf= "isAdmin" (click)="obrisiUcenikaIzOdeljenja(ucenik)" class="clickable">delete</mat-icon>
+      <mat-list-item [routerLink]="['/ucenik', ucenik.idUcenika]" class="clickable">
+
+        {{ucenik.imeUcenika}} {{ucenik.prezimeUcenika}}
+      </mat-list-item>
+    </div>
+  </mat-list>
+
+  <div *ngIf= "isAdmin">
+    <form #forma="ngForm" (ngSubmit)="forma.form.valid && dodajUcenika()">
+      <mat-form-field class="d-block">
+        <mat-select placeholder="Novi ucenik" [(ngModel)]="noviUcenik" name="predmet" required>
+          <mat-option *ngFor="let ucenik of (uceniciBezOdeljenja$ | async) " [value]="ucenik">
+            {{ucenik.imeUcenika}} {{ucenik.prezimeUcenika}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button color="warn" class="m-2">Dodaj ucenika</button>
+    </form>
+    <h4>Predmeti</h4>
+    <mat-list>
+      <div *ngFor="let item of opn" class="ucenik">
+        <mat-icon (click)="deleteOPN(item.idOdeljenjePredmetNastavnik)" class="clickable">delete</mat-icon>
+        <mat-list-item class="ucenik" class="clickable">
+          {{item.nastavnik.imeNastavnika}} {{item.nastavnik.prezimeNastavnika}}, Ime predmeta : {{item.predmet.imePredmeta}}
+
+        </mat-list-item>
+
+      </div>
+    </mat-list>
+    <button class="m-2" mat-raised-button color="warn" [routerLink]="['/',idOdeljenja,'predmet', 'add']">Dodaj predmet i nastavnika</button>
+  </div>
+</div>

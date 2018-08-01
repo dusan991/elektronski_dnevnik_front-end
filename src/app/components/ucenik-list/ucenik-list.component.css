@@ -1,0 +1,29 @@
+.ucenik
+{
+    background-color: #673ab7;
+    margin : 2px;
+}
+
+.spacer
+{
+    flex : 1 1 auto;
+}
+
+span 
+{
+    color : white;
+}
+
+.mat-list-item{
+    color : white;
+}
+
+.clickable
+{
+    cursor: pointer;
+}
+
+.clickable :hover
+{
+    background-color: #5c20c4;
+}

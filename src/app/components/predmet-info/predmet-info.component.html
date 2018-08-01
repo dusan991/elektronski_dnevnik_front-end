@@ -1,0 +1,11 @@
+<form *ngIf="predmet" #forma="ngForm" class="container mx-auto w-50 mt-5" (ngSubmit)="izmeniPredmet()">
+  <h3>Uredi predmet:</h3>
+  <mat-form-field class="d-block">
+    <input matInput placeholder="Ime predmeta" required name="ImePredmeta" [(ngModel)]="predmet.imePredmeta" autocomplete="off">
+  </mat-form-field>
+  <mat-form-field class="d-block">
+    <input matInput placeholder="Fond casova nedeljno" required name="fondCasovaNedeljni" [(ngModel)]="predmet.fondCasovaNedeljni" autocomplete="off">
+  </mat-form-field>
+  <button mat-raised-button>Sacuvaj</button>
+  <button mat-button type="button" (click)="izbrisiPredmet()">Izbrisi predmet</button>
+</form>

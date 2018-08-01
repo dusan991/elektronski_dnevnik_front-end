@@ -1,0 +1,13 @@
+.glavniDiv
+{
+    width : 20%;
+    margin-left : 40%;
+    min-width: 200px;
+    height: 30%;
+    margin-top: 150px;
+}
+
+.input
+{
+    width : 100%;
+}
